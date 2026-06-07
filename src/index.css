@@ -1,6 +1,10 @@
 @import "tailwindcss";
 
 @media print {
+  @page {
+    margin: 0 !important;
+  }
+
   /* Hide UI panels, editor form, action buttons, notifications and background frame structures during printing */
   .no-print,
   button,
@@ -25,10 +29,11 @@
   #invoice-print-container {
     box-shadow: none !important;
     border: none !important;
-    padding: 0 !important;
+    padding: 1.5cm !important;
     margin: 0 !important;
     width: 100% !important;
     max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   /* Force standard background graphics execution */

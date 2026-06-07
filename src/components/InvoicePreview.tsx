@@ -117,7 +117,7 @@ export const InvoicePreview: React.FC<InvoicePreviewProps> = ({
         <div 
           id="invoice-print-container"
           ref={printAreaRef}
-          className="w-full max-w-[800px] bg-white text-black font-sans p-6 md:p-10 shadow-2xl rounded border border-gray-200 self-start print:shadow-none print:border-none print:p-0 print:m-0 print:bg-white print:text-black"
+          className="w-full max-w-[800px] bg-white text-black font-sans p-6 md:p-10 shadow-2xl rounded border border-gray-200 self-start print:shadow-none print:border-none print:bg-white print:text-black"
         >
           {/* 1. Header (My Company Info) */}
           <div className="text-center mb-4">
