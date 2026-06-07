@@ -248,7 +248,19 @@ export function downloadInvoiceWord(invoice: Invoice) {
       <table class="signature-section">
         <tr>
           <td style="width: 50%;">
-            <div class="sig-line"></div>
+            <div class="sig-line" style="position: relative; display: flex; align-items: flex-end; justify-content: flex-start; min-height: 50px;">
+              ${
+                invoice.signatureType === 'text' && invoice.signatureImage
+                  ? `<div style="border: 3px double ${invoice.signatureColor === 'blue' ? '#1e40af' : invoice.signatureColor === 'purple' ? '#6d28d9' : invoice.signatureColor === 'black' ? '#111827' : '#dc2626'}; text-align: center; color: ${invoice.signatureColor === 'blue' ? '#1e40af' : invoice.signatureColor === 'purple' ? '#6d28d9' : invoice.signatureColor === 'black' ? '#111827' : '#dc2626'}; font-weight: bold; font-size: 7pt; width: 180px; padding: 4px; margin-bottom: 5px;">
+                      <div style="font-size: 5pt; border-bottom: 1px double currentColor; padding-bottom: 1px; margin-bottom: 2px;">★ APPROVED & STAMPED ★</div>
+                      <div style="font-size: 8.5pt; font-family: Arial, sans-serif; font-weight: 900;">${invoice.signatureImage}</div>
+                      <div style="font-size: 5pt; border-top: 1px double currentColor; padding-top: 1px; margin-top: 2px;">DATE: ${invoice.date || ''}</div>
+                     </div>`
+                  : (invoice.signatureType === 'draw' || invoice.signatureType === 'upload') && invoice.signatureImage
+                  ? `<img src="${invoice.signatureImage}" style="max-height: 50px; max-width: 180px;" />`
+                  : ''
+              }
+            </div>
             <div class="sig-text">Authorised Signature</div>
             ${invoice.authorisedSignBy ? `<div style="font-size: 8.5pt; color: #555555;">(${invoice.authorisedSignBy})</div>` : ''}
           </td>

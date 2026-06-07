@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 import { Invoice, InvoiceItem, CompanyProfile, CustomerProfile, SavedPresetItem } from '../types';
 import { DEFAULT_COMPANY, DEFAULT_CUSTOMERS, DEFAULT_PRESET_ITEMS } from '../presets';
 import { Plus, Trash2, Calendar, UserPlus, FileText, ChevronDown, ChevronUp, Copy, HelpCircle, Archive } from 'lucide-react';
+import { SignaturePad } from './SignaturePad';
 
 interface InvoiceFormProps {
   invoice: Invoice;
@@ -28,7 +29,7 @@ export const InvoiceForm: React.FC<InvoiceFormProps> = ({
   t
 }) => {
   // Collapsible accordion states
-  const [openSection, setOpenSection] = useState<'items' | 'issuer' | 'customer' | 'meta' | 'saved'>('items');
+  const [openSection, setOpenSection] = useState<'items' | 'issuer' | 'customer' | 'meta' | 'saved' | 'signature'>('items');
 
   // Input states for creating a custom brand-new item
   const [newItemDesc, setNewItemDesc] = useState('');
@@ -38,7 +39,7 @@ export const InvoiceForm: React.FC<InvoiceFormProps> = ({
   const [newItemDisc, setNewItemDisc] = useState<number>(0);
   const [newItemDiscType, setNewItemDiscType] = useState<'flat' | 'percent'>('flat');
 
-  const toggleSection = (section: 'items' | 'issuer' | 'customer' | 'meta' | 'saved') => {
+  const toggleSection = (section: 'items' | 'issuer' | 'customer' | 'meta' | 'saved' | 'signature') => {
     setOpenSection(openSection === section ? 'items' : section);
   };
 
@@ -755,6 +756,31 @@ export const InvoiceForm: React.FC<InvoiceFormProps> = ({
                 </button>
               </form>
 
+            </div>
+          )}
+        </div>
+
+        {/* SECTION 5: STAMP & SIGNATURE */}
+        <div className="border border-slate-200 rounded-lg bg-white overflow-hidden shadow-sm hover:shadow-md transition">
+          <button
+            onClick={() => toggleSection('signature')}
+            className="w-full px-4 py-3 bg-white hover:bg-slate-50 flex justify-between items-center transition"
+            id="accordion-btn-signature"
+          >
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-700">
+              <FileText size={14} className="text-indigo-600" />
+              <span>5. Stamp & Authorised Signature</span>
+            </div>
+            {openSection === 'signature' ? <ChevronUp size={14} className="text-slate-400" /> : <ChevronDown size={14} className="text-slate-400" />}
+          </button>
+
+          {openSection === 'signature' && (
+            <div className="p-4 bg-slate-50 border-t border-slate-200 space-y-4">
+              <SignaturePad 
+                invoice={invoice} 
+                onChange={onChange} 
+                t={t} 
+              />
             </div>
           )}
         </div>

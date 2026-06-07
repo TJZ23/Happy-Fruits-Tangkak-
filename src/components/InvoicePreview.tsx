@@ -277,8 +277,50 @@ export const InvoicePreview: React.FC<InvoicePreviewProps> = ({
           {/* 5. Authorisation and Signature */}
           <div className="mt-12 text-xs flex justify-between items-end">
             <div className="flex flex-col items-center text-center">
-              <div className="w-56 border-b border-black mb-1 h-14 flex items-end justify-center">
-                <span className="text-[10px] text-gray-300 font-mono tracking-wider no-print">Optional Stamp / Signature</span>
+              <div className="w-56 border-b border-black mb-1 h-20 flex items-center justify-center relative select-none">
+                {/* Default prompt if no signature of any type is selected */}
+                {(!invoice.signatureType || invoice.signatureType === 'none') && (
+                  <span className="text-[10px] text-gray-300 font-mono tracking-wider no-print self-end mb-1 font-bold">
+                    Optional Stamp / Signature
+                  </span>
+                )}
+
+                {/* Draw Signature or Custom Uploaded Transparent Seal representation */}
+                {(invoice.signatureType === 'draw' || invoice.signatureType === 'upload') && invoice.signatureImage && (
+                  <img 
+                    src={invoice.signatureImage} 
+                    alt="Signature Stamp Seal"
+                    className="max-h-full max-w-full object-contain pointer-events-none select-none relative z-10"
+                    referrerPolicy="no-referrer"
+                  />
+                )}
+
+                {/* Dynamic Stylized Vector Rubber Stamp representation */}
+                {invoice.signatureType === 'text' && invoice.signatureImage && (
+                  <div 
+                    className="absolute inset-0 flex items-center justify-center rotate-[-3deg] pointer-events-none select-none transition-transform"
+                    style={{ color: invoice.signatureColor === 'blue' ? '#1e40af' : invoice.signatureColor === 'purple' ? '#6d28d9' : invoice.signatureColor === 'black' ? '#111827' : '#dc2626' }}
+                  >
+                    <div 
+                      className="border-4 rounded shadow-sm border-double px-2.5 py-1 text-center uppercase tracking-wider font-bold leading-tight scale-90"
+                      style={{ 
+                        borderColor: 'currentColor',
+                        borderStyle: 'double',
+                        borderWidth: '4px'
+                      }}
+                    >
+                      <div className="text-[6.5px] tracking-widest border-b pb-0.5 mb-1" style={{ borderColor: 'currentColor' }}>
+                        ★ RECEIVED & APPROVED ★
+                      </div>
+                      <div className="text-[10.5px] font-sans font-black whitespace-nowrap px-1">
+                        {invoice.signatureImage}
+                      </div>
+                      <div className="text-[6.5px] tracking-widest border-t pt-0.5 mt-1 font-mono" style={{ borderColor: 'currentColor' }}>
+                        DATE: {invoice.date || '01/06/2026'}
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
               <p className="font-bold text-gray-900 pt-1 w-full max-w-xs">
                 Authorised Signature

@@ -42,6 +42,9 @@ export interface Invoice {
   customer: CustomerProfile;
   items: InvoiceItem[];
   authorisedSignBy?: string;
+  signatureImage?: string;
+  signatureType?: 'draw' | 'upload' | 'text' | 'none';
+  signatureColor?: string;
   createdAt: string;
 }
 
