@@ -264,7 +264,7 @@ export default function App() {
       <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 overflow-hidden">
         
         {/* Left Hand: Invoice Editor Form (Grid span 5) */}
-        <div className="lg:col-span-5 h-full overflow-y-auto bg-white border-r border-slate-200 flex flex-col">
+        <div className="lg:col-span-5 h-full overflow-y-auto bg-white border-r border-slate-200 flex flex-col no-print">
           <InvoiceForm
             invoice={activeInvoice}
             onChange={setActiveInvoice}
@@ -281,7 +281,7 @@ export default function App() {
         </div>
 
         {/* Right Hand: High Fidelity Malaysia Receipt Preview (Grid span 7) */}
-        <div className="lg:col-span-7 h-full flex flex-col bg-slate-100 overflow-hidden">
+        <div className="lg:col-span-7 h-full flex flex-col bg-slate-100 overflow-hidden print:w-full print:h-auto print:bg-transparent print:overflow-visible">
           <InvoicePreview
             invoice={activeInvoice}
             onShare={handleGenerateShareableLink}

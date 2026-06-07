@@ -38,6 +38,7 @@ export const translations = {
     shareLink: "Share Link",
     sendWhatsapp: "Send WhatsApp",
     downloadExcel: "Download Excel",
+    exportWord: "Export to Word",
     invoiceMeta: "Invoice Type & Meta Details",
     totalAmount: "Total Amount"
   },
@@ -78,6 +79,7 @@ export const translations = {
     shareLink: "分享链接",
     sendWhatsapp: "发送 WhatsApp",
     downloadExcel: "下载 Excel",
+    exportWord: "导出为 Word",
     invoiceMeta: "发票类型与元数据",
     totalAmount: "总金额"
   },
@@ -118,6 +120,7 @@ export const translations = {
     shareLink: "Kongsi Pautan",
     sendWhatsapp: "Hantar WhatsApp",
     downloadExcel: "Muat Turun Excel",
+    exportWord: "Eksport ke Word",
     invoiceMeta: "Jenis Invois & Butiran Meta",
     totalAmount: "Jumlah"
   }
