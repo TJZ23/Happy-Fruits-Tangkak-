@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@media print {
+  /* Hide UI panels, editor form, action buttons, notifications and background frame structures during printing */
+  .no-print,
+  button,
+  header,
+  nav,
+  input,
+  select,
+  textarea {
+    display: none !important;
+  }
+
+  /* Make whole screen body fit print sizes perfectly and force white colors */
+  body, html {
+    background: white !important;
+    color: black !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  #invoice-print-container {
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Force standard background graphics execution */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+

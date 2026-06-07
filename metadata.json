@@ -1,0 +1,6 @@
+{
+  "name": "Malaysia Billing & Invoicing Manager",
+  "description": "An interactive utility to issue, dispatch, and track invoices with Malaysian currency calculations and automated Excel downloads.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
